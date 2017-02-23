@@ -1,9 +1,11 @@
 package chessGame;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class boardButton extends JButton {
    private String piece = "";
+   private ImageIcon myicon;
    private int x, y;
    public String getPiece(){
 	   return piece;
@@ -33,4 +35,13 @@ public class boardButton extends JButton {
    public void setY(int y) {
 	this.y = y;
    }
+
+public ImageIcon getMyicon() {
+	return myicon;
+}
+
+public void setMyicon(ImageIcon myicon) {
+	this.myicon = myicon;
+	this.setIcon(myicon);
+}
 }

@@ -15,7 +15,7 @@ public class calculator {
 		   boolean NE = false;
 		   boolean SW = false;
 		   boolean SE = false;
-		   for(int i = 0; i < 8; i++){
+		   for(int i = 1; i < 8; i++){
 			   if(!NE){
 			   NE = helper(res, temp[0], X + i, Y + i, board);
 			   }
@@ -57,16 +57,16 @@ public class calculator {
 		   //System.out.println(2);
 		   if(temp[0].equals("white")){
 			   helper(res, temp[0], X - 1, Y, board);
-			   pawnCheck(piece,res, temp[0], X -1, Y - 1, board);
-			   pawnCheck(piece,res, temp[0], X - 1, Y + 1, board);
+			   pawnCheck(res, temp[0], X -1, Y - 1, board);
+			   pawnCheck(res, temp[0], X - 1, Y + 1, board);
 			   if(X == 6){
 				  helper(res, temp[0], X - 2, Y, board);
 			   }
 		   }else{
 			   helper(res, temp[0], X + 1, Y, board);
-			   pawnCheck(piece,res, temp[0], X + 1, Y + 1, board);
-			   pawnCheck(piece,res, temp[0], X + 1, Y - 1, board);
-			   if(X == 6){
+			   pawnCheck(res, temp[0], X + 1, Y + 1, board);
+			   pawnCheck(res, temp[0], X + 1, Y - 1, board);
+			   if(X == 1){
 				  helper(res, temp[0], X + 2, Y, board);
 			   }
 		   }
@@ -81,7 +81,7 @@ public class calculator {
 		   boolean W = false;
 		   boolean S = false;
 		   boolean E = false;
-		 for(int i = 0; i < 8; i++){
+		 for(int i = 1; i < 8; i++){
 			 if(!SE){
 			 SE = helper(res, temp[0], X + i, Y + i, board);
 			 }
@@ -114,14 +114,19 @@ public class calculator {
 		   boolean W = false;
 		   boolean S = false;
 		   boolean E = false;
-		   for(int i = 0; i < 8; i++){
+		   System.out.println("rook case");
+		   for(int i = 1; i < 8; i++){
 			 if(!S){
+			 System.out.println("rook case S");
 			 S = helper(res, temp[0], X + i, Y, board);
 			 }
 			 if(!N){
+				 int z = X - i;
+			 System.out.println("rook case N " + z);
 			 N = helper(res, temp[0], X - i, Y, board);
 			 }
 			 if(!E){
+			 System.out.println("rook case E");
 			 E = helper(res, temp[0], X, Y + i, board);
 			 }
 			 if(!W){
@@ -137,21 +142,22 @@ public class calculator {
 	   if(X < 0 || X >= board.length || Y < 0 || Y >= board[0].length)
 		   return false;
 	   String name = board[X][Y].getPiece();
-	   System.out.println(X);
-	   System.out.println(name);
+	   //System.out.println(name);
 	   if(name.equals("")){
-		   System.out.println(3);
+		   //System.out.println(3);
 		   res.add(board[X][Y]);
 		   return false;
 	   }else if(!turn.equals(name.split("_")[0])){
+		   System.out.println(X + " " + Y);
 		   res.add(board[X][Y]);
-		   return false;
+		   return true;
 	   }
 	     return true;
    }
-   public void pawnCheck(String name,List<boardButton> res, String turn,  int X, int Y, boardButton[][] board){
+   public void pawnCheck(List<boardButton> res, String turn,  int X, int Y, boardButton[][] board){
 	   if(X < 0 || X >= board.length || Y < 0 || Y >= board[0].length)
 		   return;
+	   String name = board[X][Y].getPiece();
 	   if(!(name.equals("") ||name.split("_")[0].equals(turn))){
 		   res.add(board[X][Y]);
 	   }
