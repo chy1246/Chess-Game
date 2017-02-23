@@ -1,3 +1,7 @@
+/**
+ * Author: Haoyu Chen
+ * Date: 02/22/2017
+ */
 package chessGame;
 
 import java.awt.Color;
